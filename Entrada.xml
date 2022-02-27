@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <pisosArtesanales>
-
+    
     <piso nombre="ejemplo01">
         <R> 2 </R>
         <C> 4 </C>
@@ -45,5 +45,4 @@
             </patron>
         </patrones>
     </piso>
-    
 </pisosArtesanales>
