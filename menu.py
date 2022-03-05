@@ -5,24 +5,24 @@ class Menu:
 
     def PrintMenu(self,opcion):
         self.opcion = opcion
-        #try:    
-        while self.opcion != 5:
-            print('╔══════════════════════════════════════════╗')
-            print('║                   Menú                   ║')
-            print('║══════════════════════════════════════════║')
-            print('║ 1. Cargar Archivo XML.                   ║')
-            print('║ 2. Analizar piso.                        ║')
-            print('║ 3. opcion 3.                             ║')
-            print('║ 4. Reportes.                             ║')
-            print('║ 5. Salir.                                ║')
-            print('╚══════════════════════════════════════════╝')
-            self.opcion = int(input("Elige un número del menú de opciones: "))
-            self.OpcionesDelMenu(self.opcion)
-            print("") 
-        #except Exception as e:
-            #print('Error', e)
-            #self.opcion = 0
-            #self.PrintMenu(self.opcion)
+        try:    
+            while self.opcion != 5:
+                print('╔══════════════════════════════════════════╗')
+                print('║                   Menú                   ║')
+                print('║══════════════════════════════════════════║')
+                print('║ 1. Cargar Archivo XML.                   ║')
+                print('║ 2. Analizar piso.                        ║')
+                print('║ 3. opcion 3.                             ║')
+                print('║ 4. Reportes.                             ║')
+                print('║ 5. Salir.                                ║')
+                print('╚══════════════════════════════════════════╝')
+                self.opcion = int(input("Elige un número del menú de opciones: "))
+                self.OpcionesDelMenu(self.opcion)
+                print("") 
+        except Exception as e:
+            print('Error', e)
+            self.opcion = 0
+            self.PrintMenu(self.opcion)
 
     def OpcionesDelMenu(self,opcion):
         self.opcion = opcion

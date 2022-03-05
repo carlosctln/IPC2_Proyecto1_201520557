@@ -59,17 +59,17 @@
         <F> 1 </F>
         <S> 1 </S>
         <patrones>
-            <patron codigo="cod11"> 
-                WBWBWWWB
-            </patron>
             <patron codigo="cod12">
                 BWBWWWWW
+            </patron>
+            <patron codigo="cod14"> 
+                WBWBWBWW
             </patron>
             <patron codigo="cod13">
                 BWBWBWBW
             </patron>
-            <patron codigo="cod14"> 
-                WBWBWBWW
+            <patron codigo="cod11"> 
+                WBWBWWWB
             </patron>
         </patrones>
     </piso>

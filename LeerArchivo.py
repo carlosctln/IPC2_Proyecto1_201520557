@@ -53,50 +53,140 @@ class LeerXML:
         self.root = root
         self.doc = doc
         listaPisos = ListSimp()
+        lista = ListSimp()
+        lista1 = ListSimp()
+
+        for piso in pisos:
+            lista.insertar(piso)
 
         for piso in pisos:
             nombre = piso.getAttribute("nombre")
-            listaPisos.insertar(nombre)
-        print('**********Listado de pisos**********')
-        print('el tamaño de la lista es: ', listaPisos.long)
+            lista1.insertar(nombre)
 
-        for i in range(1,listaPisos.long):
-            for j in range(0,listaPisos.long - i):
-                if(listaPisos[j + 1] < listaPisos[j]):
-                    aux = listaPisos[j];
-                    listaPisos[j] = listaPisos[j + 1];
-                    listaPisos[j + 1] = aux;
+        print('**********Listado de pisos**********')
+
+        for i in range(1,lista1.long):
+            for j in range(0,lista1.long - i):
+                if(lista1[j + 1] < lista1[j]):
+                    aux = lista1[j]
+                    lista1[j] = lista1[j + 1]
+                    lista1[j + 1] = aux
+
+        for i in range(lista1.long):
+            aux = lista1[i]
+            for j in range(lista.long):
+                aux1 = lista[j]
+                if aux1.getAttribute("nombre") == aux:
+                    listaPisos.insertar(aux1)
 
         for d in listaPisos.iterar():
-            print(d)
+            aux2 = d.getAttribute("nombre")
+            print(aux2)
 
         self.nombrePiso = input('Ingresa el nombre piso a analizar: ')
-        print(listaPisos.buscar(self.nombrePiso))
         self.buscarPiso(self.nombrePiso)
 
     def buscarPiso(self, nombre):
+        listPatrones = ListSimp()
+        listPatronesColor = ListSimp()
         nom = nombre
+
         for elemen in root.findall('piso'):
-            if elemen.get('nombre') == nom:
-                R = int(elemen.find('./R').text) 
-                C = int(elemen.find('./C').text) 
-                F = int(elemen.find('./F').text) 
-                S = int(elemen.find('./S').text)
-                patrones = elemen.findall('./patrones/patron')
-                #print( patrones)
-                #print(len(patrones))
+                    if elemen.get('nombre') == nom:
+                        patrones = elemen.findall('./patrones/patron')
+                        for p in range(len(patrones)):
+                            long = len(patrones)
+                            if p <= long:
+                                listPatronesColor.insertar(patrones[p].text.strip())
+        listPatronesColor1 = ListSimp()
+        for i in range(listPatronesColor.long):
+            aux = str(i) + '  ' + listPatronesColor[i]
+            listPatronesColor1.insertar(aux)
+
+        listPatronesColor = listPatronesColor1
+
+        for elemen in listaPisos.iterar():
+            if elemen.getAttribute('nombre') == nom:
+                R = elemen.getElementsByTagName("R")[0].firstChild.data
+                C = elemen.getElementsByTagName("C")[0].firstChild.data
+                F = elemen.getElementsByTagName("F")[0].firstChild.data
+                S = elemen.getElementsByTagName("S")[0].firstChild.data
+
+                R = int(R)
+                C = int(C)
+                F = int(F)
+                S = int(S)
+
+                print('**********Patrones encontrados**********')
+                patrones = elemen.getElementsByTagName("patrones")[0]
+                patrones1 = patrones.getElementsByTagName('patron')
                 
-                #print('el valor de R es: ', R)
-                #print('el valor de C es: ', C)
-                #print('el valor de F es: ', F)
-                #print('el valor de S es: ', S)
-                #print('**********Patrones encontrados**********')
-                for p in range(len(patrones)):
-                    long = len(patrones)
-                    if p <= long:
-                        patron1 = patrones[0].text.strip()
-                        patron2 = patrones[1].text.strip()
+                objPatrones = ListSimp()
+                for d in patrones1:
+                    objPatrones.insertar(d)
 
-                #print(patron1)
-                #print(patron2)
+                nomPatrones = ListSimp()
+                nomPatrones1 = ListSimp()
+                cont = 0
+                for d in patrones1:
+                    nomPatrones.insertar(d.getAttribute('codigo'))
+                    nomPatrones1.insertar(str(cont) + '  ' + d.getAttribute('codigo'))
+                    cont += 1
 
+                for i in range(1,nomPatrones.long):
+                    for j in range(0,nomPatrones.long - i):
+                        if(nomPatrones[j + 1] < nomPatrones[j]):
+                            aux = nomPatrones[j]
+                            nomPatrones[j] = nomPatrones[j + 1]
+                            nomPatrones[j + 1] = aux
+
+                for i in range(nomPatrones.long):
+                    aux = nomPatrones[i]
+                    for j in range(objPatrones.long):
+                        aux1 = objPatrones[j]
+                        if aux1.getAttribute("codigo") == aux:
+                            listPatrones.insertar(aux1)
+
+                '''for d in listPatrones.iterar():
+                    print(d.getAttribute("codigo"))'''
+
+        cont = 0
+        aux1 = ''
+        aux = ''
+        
+        lisPatComp = ListSimp()
+        for i in range(nomPatrones1.long):
+            cont1 = str(i) + '  '
+            aux = str(nomPatrones1[i]).startswith(cont1)
+            aux1 = str(nomPatrones1[i]).replace(cont1, '')
+            if aux:
+                for j in range(listPatronesColor.long):
+                    cont2 = str(j) + '  '
+                    aux2 = str(listPatronesColor[j]).startswith(cont2)
+                    aux3 = str(listPatronesColor[i]).replace(cont2, '')
+                    if i == j:
+                        aux4 = aux1 + ' : ' + aux3
+                        lisPatComp.insertar(aux4)
+                    
+        for i in range(1,lisPatComp.long):
+            for j in range(0,lisPatComp.long - i):
+                if(lisPatComp[j + 1] < lisPatComp[j]):
+                    aux = lisPatComp[j]
+                    lisPatComp[j] = lisPatComp[j + 1]
+                    lisPatComp[j + 1] = aux
+
+        for i in lisPatComp.iterar():
+            print(i)
+
+        if R > 0:
+            if C > 0:
+                if F > 0:
+                    if S > 0:
+                        print('el valor de R es: ', R)
+                        print('el valor de C es: ', C)
+                        print('el valor de F es: ', F)
+                        print('el valor de S es: ', S)
+                    
+        else:
+            print('Error un paramétro es menor a 0')
+            
