@@ -9,6 +9,7 @@ root = ''
 pisos = ''
 xml = ''
 listaPisos = ''
+datosmatriz = ListSimp()
 class LeerXML:
     def __init__(self):
         self.archivoXml = ''
@@ -178,15 +179,44 @@ class LeerXML:
         for i in lisPatComp.iterar():
             print(i)
 
+        global datosmatriz
+        if datosmatriz.long > 0:
+            datosmatriz = ListSimp()
+
         if R > 0:
             if C > 0:
                 if F > 0:
                     if S > 0:
-                        print('el valor de R es: ', R)
-                        print('el valor de C es: ', C)
-                        print('el valor de F es: ', F)
-                        print('el valor de S es: ', S)
-                    
+                        datosmatriz.insertar(nom)
+                        patronInicial = input('Ingrese el nonmbre del patron inicial: ')
+                        for d in range(lisPatComp.long):
+                            aux = str(lisPatComp[d]).startswith(patronInicial)
+                            if aux:
+                                datosmatriz.insertar(lisPatComp[d])
+
+                        patronFinal = input('Ingrese el nonmbre del patron final: ')
+                        for d in range(lisPatComp.long):
+                            aux = str(lisPatComp[d]).startswith(patronFinal)
+                            if aux:
+                                datosmatriz.insertar(lisPatComp[d])
+                        datosmatriz.insertar(R)
+                        datosmatriz.insertar(C)
+                        datosmatriz.insertar(F)
+                        datosmatriz.insertar(S)
+            
         else:
             print('Error un paramétro es menor a 0')
-            
+
+        print('**********Se creara una matriz con los siguientes datos**********')
+        try:
+            print('Nombre:', datosmatriz[0])
+            print('Patron inicial: ',datosmatriz[1])
+            print('Patron final: ',datosmatriz[2])
+            print('Filas:', datosmatriz[3])
+            print('columnas:', datosmatriz[4])
+            print('costo por volteo:', datosmatriz[5])
+            print('Costo por intercambio:', datosmatriz[6])
+        except:
+            print('Error faltan elementos para crear la matiz')
+
+

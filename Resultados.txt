@@ -1,0 +1,20 @@
+Piso "Cocina"
+
+Patrón inicial: cod41
+Patrón final: cod43
+Costo óptimo aproximado: 38
+Piso "Cuarto"
+
+Patrón inicial: cod42
+Patrón final: cod41
+Costo óptimo aproximado: 55
+Piso "Salon"
+
+Patrón inicial: C50
+Patrón final: C30
+Costo óptimo aproximado: 801
+Piso "Pasillo"
+
+Patrón inicial: cod41
+Patrón final: cod43
+Costo óptimo aproximado: 550
