@@ -1,34 +1,45 @@
 from LeerArchivo import LeerXML
 class Menu:
-    def PrintMenu(self,opcion):
-        try:    
-            while opcion != 5:
-                print('╔══════════════════════════════════════════╗')
-                print('║                   Menú                   ║')
-                print('║══════════════════════════════════════════║')
-                print('║ 1. Cargar Archivo XML.                   ║')
-                print('║ 2. opcion 2            .                 ║')
-                print('║ 3. opcion 3.                             ║')
-                print('║ 4. Reportes.                             ║')
-                print('║ 5. Salir.                                ║')
-                print('╚══════════════════════════════════════════╝')
-                opcion = int(input("Elige un número del menú de opciones: "))
-                self.OpcionesDelMenu(opcion)
-                print("") 
-        except Exception as e:
-            opcion = 0
-            self.PrintMenu(opcion)
+    def __init__(self):
+        self.opcion = 0
 
-    def OpcionesDelMenu(self,opcion): 
-        if opcion == 1:
-            LeerXML.cargar()
-        elif opcion == 2:
-            print('Esta es la opción 2')
-        elif opcion == 3:
+    def PrintMenu(self,opcion):
+        self.opcion = opcion
+        #try:    
+        while self.opcion != 5:
+            print('╔══════════════════════════════════════════╗')
+            print('║                   Menú                   ║')
+            print('║══════════════════════════════════════════║')
+            print('║ 1. Cargar Archivo XML.                   ║')
+            print('║ 2. Analizar piso.                        ║')
+            print('║ 3. opcion 3.                             ║')
+            print('║ 4. Reportes.                             ║')
+            print('║ 5. Salir.                                ║')
+            print('╚══════════════════════════════════════════╝')
+            self.opcion = int(input("Elige un número del menú de opciones: "))
+            self.OpcionesDelMenu(self.opcion)
+            print("") 
+        #except Exception as e:
+            #print('Error', e)
+            #self.opcion = 0
+            #self.PrintMenu(self.opcion)
+
+    def OpcionesDelMenu(self,opcion):
+        self.opcion = opcion
+
+        if self.opcion == 1:
+            self.cargar = LeerXML()
+            self.cargar.cargar()
+
+        elif self.opcion == 2:
+            self.procesar = LeerXML()
+            self.procesar.Procesar()
+            
+        elif self.opcion == 3:
             print('Esta es la opción 3')
-        elif opcion == 4:
+        elif self.opcion == 4:
             print('Esta es la opción 4')
-        elif opcion == 5:
+        elif self.opcion == 5:
             print("¡Programa finalizado!")
         else:
             print("\n\n¡La opción que has elegido no existe!")
