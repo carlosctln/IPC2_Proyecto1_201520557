@@ -3,6 +3,7 @@ from xml.etree import ElementTree as ET
 from xml.etree.ElementTree import parse
 from listaSimple import ListSimp
 from xml.dom import minidom
+from Matriz import MatrizOrtogonal
 
 doc = ''
 root = ''
@@ -218,5 +219,43 @@ class LeerXML:
             print('Costo por intercambio:', datosmatriz[6])
         except:
             print('Error faltan elementos para crear la matiz')
+        
+        patronInicial = patronInicial + ' : '
+        patronFinal = patronFinal + ' : '
 
+        patInit = str(datosmatriz[1]).replace(patronInicial, '')
+        patFin = str(datosmatriz[2]).replace(patronFinal, '')
+
+        matrizA = MatrizOrtogonal()
+        matrizB = MatrizOrtogonal()
+        matrizC = MatrizOrtogonal()
+        fila = datosmatriz[3]
+        columna = datosmatriz[4]
+
+        listaPatInit = ListSimp()
+        for c in patInit:
+            listaPatInit.insertar(c)
+
+        listaPatFin = ListSimp()
+        for c1 in patFin:
+            listaPatFin.insertar(c1)
+
+        k = 0
+        for i in range(1,fila+1):
+            for j in range(1,columna+1):
+                aux5 = listaPatInit[k]
+                matrizA.ingresardatos(aux5, i, j)
+                k += 1
+
+        k = 0
+        for i in range(1,fila+1):
+            for j in range(1,columna+1):
+                aux5 = listaPatFin[k]
+                matrizB.ingresardatos(aux5, i, j)
+                k += 1
+
+        print(matrizA.mostrarMatriz())
+        print()
+        print()
+        print(matrizB.mostrarMatriz())
 
