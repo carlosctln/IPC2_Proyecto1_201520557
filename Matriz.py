@@ -48,19 +48,3 @@ class MatrizOrtogonal:
                         aux = aux.anterior
         img = img+aux.dato
         return img
-
-    def Graficar(self):
-        aux = self.cabeza
-        img =""
-        while (aux.abajo!=None) | (aux.siguiente!=None):
-            img = img + aux.dato
-            if aux.siguiente !=None:
-                aux = aux.siguiente
-            else:
-                img = img + "\n"
-                if aux.abajo!=None:
-                    aux = aux.abajo
-                    while aux.anterior!=None:
-                        aux = aux.anterior
-        img = img+aux.dato
-        return img

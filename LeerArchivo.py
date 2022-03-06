@@ -258,4 +258,5 @@ class LeerXML:
         print()
         print()
         print(matrizB.mostrarMatriz())
+        matrizA.Graficar()
 
