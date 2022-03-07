@@ -65,6 +65,7 @@ class LeerXML:
             nombre = piso.getAttribute("nombre")
             lista1.insertar(nombre)
 
+        print()
         print('**********Listado de pisos**********')
 
         for i in range(1,lista1.long):
@@ -119,6 +120,7 @@ class LeerXML:
                 F = int(F)
                 S = int(S)
 
+                print()
                 print('**********Patrones encontrados**********')
                 patrones = elemen.getElementsByTagName("patrones")[0]
                 patrones1 = patrones.getElementsByTagName('patron')
@@ -208,6 +210,7 @@ class LeerXML:
         else:
             print('Error un paramétro es menor a 0')
 
+        print()
         print('**********Se creara una matriz con los siguientes datos**********')
         try:
             print('Nombre:', datosmatriz[0])
@@ -254,9 +257,13 @@ class LeerXML:
                 matrizB.ingresardatos(aux5, i, j)
                 k += 1
 
+        print()
+        print('Matriz Patrón inicial')
         print(matrizA.mostrarMatriz())
         print()
         print()
-        print(matrizB.mostrarMatriz())
+        print('Matriz Patrón Final')
+        print(matrizA.mostrarMatriz())
+
         matrizA.Graficar()
 

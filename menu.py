@@ -12,9 +12,7 @@ class Menu:
             print('║══════════════════════════════════════════║')
             print('║ 1. Cargar Archivo XML.                   ║')
             print('║ 2. Analizar piso.                        ║')
-            print('║ 3. opcion 3.                             ║')
-            print('║ 4. Reportes.                             ║')
-            print('║ 5. Salir.                                ║')
+            print('║ 3. Salir.                                ║')
             print('╚══════════════════════════════════════════╝')
             self.opcion = int(input("Elige un número del menú de opciones: "))
             self.OpcionesDelMenu(self.opcion)
@@ -34,12 +32,7 @@ class Menu:
         elif self.opcion == 2:
             self.procesar = LeerXML()
             self.procesar.Procesar()
-            
         elif self.opcion == 3:
-            print('Esta es la opción 3')
-        elif self.opcion == 4:
-            print('Esta es la opción 4')
-        elif self.opcion == 5:
             print("¡Programa finalizado!")
         else:
             print("\n\n¡La opción que has elegido no existe!")
